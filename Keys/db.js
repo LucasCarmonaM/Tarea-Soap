@@ -3,6 +3,6 @@ module.exports = {
         host: 'localhost',
         user: 'lucasACM',
         password: '1234',
-        database: 'puntajesPSU'
+        database: 'carreras'
     }
 };
