@@ -2,20 +2,14 @@ const csv = require('csv-parser')
 const fs = require('fs');
 const json = require('./carreras.json');
 
-const results = [];
 const Headers = ['RUT', 'NEM', 'RANKING', 'MATEMATICAS', 'LENGUAJE', 'HISTORIA', 'CIENCIAS'];
 
-// OPCIONES PARA PIPE CSV PARAMETRO
+// OPCIONES PARA PIPE CSV (PARAMETRO) de la funcion
 const obj = {
     separator: ';',
     headers: Headers
 };
 
-// objeto que ira en objMatriz que permite tener el rut y la ponderacion juntos
-let ponderando = {
-    rut: '',
-    pondera: ''
-};
 
 //objeto utilizada para tener las 28 carreras con un arreglo de objetos que son par de datos, el rut y su ponderacion
 const objMatriz = {
@@ -54,17 +48,43 @@ const llenarMCarreras = () => {
 };
 llenarMCarreras();
 
+/* 
+EJEMPLO DE MATRIZ CARRERAS donde arrreglo "Persona" se llena con todos los postulantes a la carrera matrizCarrera[i]
+    matrizCarrera[1]{
+        Codigo: 21041
+        Vacantes: 60
+        Ultimo: 690
+        Pond: '10,20,30,40'
+        Persona[1]:{
+            Rut:199323911
+            Pond: 700
+        }
+    }
+*/
 
+/*
+siguiente funcion trabaja arreglo con los puntajes ponderados por carrera del 0 al 27 (28 carreras) llenando con objetos personas,
+que tienen rut y ponderacion de este, dependiendo de las vacantes de esta carrera se van llenando
 
-
-
-//funcion que devuelve trabaja arreglo con los puntajes ponderados por carrera del 0 al 27 (28 carreras)
+Siguiente funcion recibe un parametro que corresponde a cada linea del csv ( una persona por llamada de esta funcion )
+Parametro
+    puntajes = {
+        RUT:,
+        NEM:,
+        RANKING:,
+        MATEMATICAS:,
+        LENGUAJE:,
+        HISTORIA:,
+        CIENCIAS
+    }
+*/
 const promedios = (puntajes) => {
-    let prom = [];
-    //array del split de las ponderaciones del objeto con cada carrera dentro de matrizCarrera[posicion]
+    //array para realizar for each de las ponderaciones de cada materia dependiendo de la carrera
     ponderaciones = [];
+    //Arreglo que se utilizara en la funcion each de las ponderaciones, este se llena con los puntajes
     let ponderOrden = [];
-    // 28 es la cantidad de carreras Indices 0 - 27 carreras de array de objetos "carreras"
+    // RECORDATORIO: 28 es la cantidad de carreras Indices 0 - 27 carreras del array de objetos matrizCarrera
+    // Este for recorrera todas las carreras y de cumplir condiciones se ingresara esta persona a cada carrera
     for (let i = 0; i < 28; i++) {
         matrizCarrera[i].Persona.sort((a, b) => {
             if (a.pondera > b.pondera) {
@@ -75,6 +95,7 @@ const promedios = (puntajes) => {
             }
             return 0;
         });
+        // Si el puntaje en historia es mayor al de ciencias, se utiliza este primero para las ponderar
         if (parseInt(puntajes.HISTORIA) > parseInt(puntajes.CIENCIAS)) {
 
             ponderaciones = matrizCarrera[i].Pond.split(',');
@@ -100,8 +121,6 @@ const promedios = (puntajes) => {
                     });
                 }
                 if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
-                    ponderando.rut = puntajes.RUT;
-                    ponderando.pondera = sum;
                     matrizCarrera[i].Persona.push({
                         rut: puntajes.RUT,
                         pondera: sum
@@ -111,11 +130,7 @@ const promedios = (puntajes) => {
             } else {
                 if (matrizCarrera[i].Persona.length >= matrizCarrera[i].Vacantes) {} else {
                     if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
-
                         matrizCarrera[i].Ultimo = sum;
-
-                        ponderando.rut = puntajes.RUT;
-                        ponderando.pondera = sum;
                         matrizCarrera[i].Persona.push({
                             rut: puntajes.RUT,
                             pondera: sum
@@ -147,8 +162,6 @@ const promedios = (puntajes) => {
                 }
                 if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
 
-                    ponderando.rut = puntajes.RUT;
-                    ponderando.pondera = sum;
                     matrizCarrera[i].Persona.push({
                         rut: puntajes.RUT,
                         pondera: sum
@@ -161,8 +174,7 @@ const promedios = (puntajes) => {
 
                         matrizCarrera[i].Ultimo = sum;
 
-                        ponderando.rut = puntajes.RUT;
-                        ponderando.pondera = sum;
+
                         matrizCarrera[i].Persona.push({
                             rut: puntajes.RUT,
                             pondera: sum
@@ -175,7 +187,9 @@ const promedios = (puntajes) => {
     }
 };
 
-fs.createReadStream('puntajes2.csv')
+// Funcion lee csv y por linea devuelve un objeto con puntajes de cada materia y el rut
+// Primer "on" llama funcion promedios si el promedio entre lenguaje y matematicas es sobre 450
+fs.createReadStream('puntajes3.csv')
     .pipe(csv(obj))
     .on('data', (puntajes) => {
         if ((parseInt(puntajes.LENGUAJE) + parseInt(puntajes.MATEMATICAS) / 2) > 450) {
