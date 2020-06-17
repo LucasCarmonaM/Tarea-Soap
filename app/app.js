@@ -35,7 +35,7 @@ let matrizCarrera = [];
 let carreras = [];
 carreras = json;
 
-console.log(carreras[2].nem);
+
 
 const llenarMCarreras = () => {
     const objetito = {
@@ -60,7 +60,7 @@ const llenarMCarreras = () => {
 };
 llenarMCarreras();
 
-console.log(matrizCarrera);
+
 
 
 
@@ -122,7 +122,6 @@ const promedios = (puntajes) => {
             });
 
             if (sum > matrizCarrera[i].Ultimo && matrizCarrera[i].Persona.length == matrizCarrera[i].vacantes) {
-                console.log('entra oe');
                 matrizCarrera[i].objMatriz.Persona.sort((a, b) => {
                     if (a.pondera > b.pondera) {
                         return 1;
@@ -151,7 +150,7 @@ const promedios = (puntajes) => {
     }
 };
 
-fs.createReadStream('puntajes2.csv')
+fs.createReadStream('puntajes.csv')
     .pipe(csv(obj))
     .on('data', (puntajes) => {
         if ((parseInt(puntajes.LENGUAJE) + parseInt(puntajes.MATEMATICAS) / 2) > 450) {
@@ -161,5 +160,5 @@ fs.createReadStream('puntajes2.csv')
     .on('end', () => {
         console.log('Termina de recorrer');
 
-        console.log(matrizCarrera[1].Persona);
+        console.log(matrizCarrera);
     });
