@@ -1,8 +1,5 @@
 const csv = require('csv-parser')
 const fs = require('fs');
-const { rejects } = require('assert');
-const dbConnection = require('../db/coneccion');
-const { connect } = require('http2');
 const json = require('./carreras.json');
 
 const results = [];
