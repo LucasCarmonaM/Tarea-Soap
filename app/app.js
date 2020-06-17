@@ -46,9 +46,6 @@ const llenarMCarreras = () => {
         Persona: []
     };
     for (let i = 0; i < 28; i++) {
-
-
-
         matrizCarrera.push({
             Codigo: carreras[i].codigo,
             Vacantes: carreras[i].vacantes,
@@ -72,16 +69,17 @@ const promedios = (puntajes) => {
     let ponderOrden = [];
     // 28 es la cantidad de carreras Indices 0 - 27 carreras de array de objetos "carreras"
     for (let i = 0; i < 28; i++) {
-        matrizCarrera[1].Persona.sort((a, b) => {
+        matrizCarrera[i].Persona.sort((a, b) => {
             if (a.pondera > b.pondera) {
-                return 1;
+                return -1;
             }
             if (a.pondera < b.pondera) {
-                return -1;
+                return 1;
             }
             return 0;
         });
         if (parseInt(puntajes.HISTORIA) > parseInt(puntajes.CIENCIAS)) {
+
             ponderaciones = matrizCarrera[i].Pond.split(',');
             ponderOrden.push(puntajes.NEM);
             ponderOrden.push(puntajes.RANKING);
@@ -93,23 +91,43 @@ const promedios = (puntajes) => {
                 sum += parseInt(element) * (ponderOrden[index] / 100);
             });
 
-            if (sum > matrizCarrera[i].Ultimo && (matrizCarrera[i].Persona.length) == matrizCarrera[i].vacantes) {
-                ponderando.rut = puntajes.RUT;
-                ponderando.pondera = sum;
-                matrizCarrera[i].Persona.push({
-                    rut: puntajes.RUT,
-                    pondera: sum
-                });
-            }
-            if (matrizCarrera[i].Persona.length != matrizCarrera[i].vacantes) {
-                ponderando.rut = puntajes.RUT;
-                ponderando.pondera = sum;
-                matrizCarrera[i].Persona.push({
-                    rut: puntajes.RUT,
-                    pondera: sum
-                });
+
+            if (sum > matrizCarrera[i].Ultimo) {
+
+                if (matrizCarrera[i].Persona.length >= matrizCarrera[i].Vacantes) {
+                    matrizCarrera[i].Ultimo = matrizCarrera[i].Persona[matrizCarrera[i].Vacantes - 2].pondera;
+                    matrizCarrera[i].Persona.pop();
+                    matrizCarrera[i].Persona.push({
+                        rut: puntajes.RUT,
+                        pondera: sum
+                    });
+                }
+                if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
+                    ponderando.rut = puntajes.RUT;
+                    ponderando.pondera = sum;
+                    matrizCarrera[i].Persona.push({
+                        rut: puntajes.RUT,
+                        pondera: sum
+                    });
+                }
+
+            } else {
+                if (matrizCarrera[i].Persona.length >= matrizCarrera[i].Vacantes) {} else {
+                    if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
+
+                        matrizCarrera[i].Ultimo = sum;
+
+                        ponderando.rut = puntajes.RUT;
+                        ponderando.pondera = sum;
+                        matrizCarrera[i].Persona.push({
+                            rut: puntajes.RUT,
+                            pondera: sum
+                        });
+                    }
+                }
             }
         } else {
+
             ponderaciones = matrizCarrera[i].Pond.split(',');
             ponderOrden.push(puntajes.NEM);
             ponderOrden.push(puntajes.RANKING);
@@ -121,36 +139,46 @@ const promedios = (puntajes) => {
                 sum += parseInt(element) * (ponderOrden[index] / 100);
             });
 
-            if (sum > matrizCarrera[i].Ultimo && matrizCarrera[i].Persona.length == matrizCarrera[i].vacantes) {
-                matrizCarrera[i].objMatriz.Persona.sort((a, b) => {
-                    if (a.pondera > b.pondera) {
-                        return 1;
+            if (sum > matrizCarrera[i].Ultimo) {
+                if (matrizCarrera[i].Persona.length >= matrizCarrera[i].Vacantes) {
+                    matrizCarrera[i].Ultimo = matrizCarrera[i].Persona[matrizCarrera[i].Vacantes - 2].pondera;
+                    matrizCarrera[i].Persona.pop();
+                    matrizCarrera[i].Persona.push({
+                        rut: puntajes.RUT,
+                        pondera: sum
+                    });
+                }
+                if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
+
+                    ponderando.rut = puntajes.RUT;
+                    ponderando.pondera = sum;
+                    matrizCarrera[i].Persona.push({
+                        rut: puntajes.RUT,
+                        pondera: sum
+                    });
+                }
+
+            } else {
+                if (matrizCarrera[i].Persona.length >= matrizCarrera[i].Vacantes) {} else {
+                    if (matrizCarrera[i].Persona.length < matrizCarrera[i].Vacantes) {
+
+                        matrizCarrera[i].Ultimo = sum;
+
+                        ponderando.rut = puntajes.RUT;
+                        ponderando.pondera = sum;
+                        matrizCarrera[i].Persona.push({
+                            rut: puntajes.RUT,
+                            pondera: sum
+                        });
                     }
-                    if (a.pondera < b.pondera) {
-                        return -1;
-                    }
-                    return 0;
-                });
-                ponderando.rut = puntajes.RUT;
-                ponderando.pondera = sum;
-                matrizCarrera[i].Persona.push({
-                    rut: puntajes.RUT,
-                    pondera: sum
-                });
+                }
             }
-            if (matrizCarrera[i].Persona.length != matrizCarrera[i].vacantes) {
-                ponderando.rut = puntajes.RUT;
-                ponderando.pondera = sum;
-                matrizCarrera[i].Persona.push({
-                    rut: puntajes.RUT,
-                    pondera: sum
-                });
-            }
+
         }
     }
 };
 
-fs.createReadStream('puntajes.csv')
+fs.createReadStream('puntajes2.csv')
     .pipe(csv(obj))
     .on('data', (puntajes) => {
         if ((parseInt(puntajes.LENGUAJE) + parseInt(puntajes.MATEMATICAS) / 2) > 450) {
@@ -161,4 +189,7 @@ fs.createReadStream('puntajes.csv')
         console.log('Termina de recorrer');
 
         console.log(matrizCarrera);
+        console.log(matrizCarrera[1].Persona);
+        console.log(matrizCarrera[1].Vacantes);
+        console.log(matrizCarrera[1].Persona.length);
     });
