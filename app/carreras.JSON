@@ -1,0 +1,281 @@
+[{
+        "codigo": 21073,
+        "nem": 15,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 30,
+        "cienciasHistoria": 10,
+        "vacantes": 60,
+        "ultimo": 540.9
+    },
+    {
+        "codigo": 21049,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 60,
+        "ultimo": 539.35
+    },
+    {
+        "codigo": 21041,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 130,
+        "ultimo": 539.35
+    },
+    {
+        "codigo": 21047,
+        "nem": 15,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 20,
+        "cienciasHistoria": 20,
+        "vacantes": 100,
+        "ultimo": 527.4
+    },
+    {
+        "codigo": 21089,
+        "nem": 15,
+        "ranking": 20,
+        "lenguaje": 30,
+        "matematica": 25,
+        "cienciasHistoria": 10,
+        "vacantes": 35,
+        "ultimo": 513
+    },
+    {
+        "codigo": 21043,
+        "nem": 20,
+        "ranking": 30,
+        "lenguaje": 20,
+        "matematica": 10,
+        "cienciasHistoria": 20,
+        "vacantes": 95,
+        "ultimo": 510.5
+    },
+    {
+        "codigo": 21030,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 105,
+        "ultimo": 507.75
+    },
+    {
+        "codigo": 21096,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 90,
+        "ultimo": 506.8
+    },
+    {
+        "codigo": 21046,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 25,
+        "ultimo": 504.25
+    },
+    {
+        "codigo": 21076,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 200,
+        "ultimo": 500.85
+    },
+    {
+        "codigo": 21075,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 80,
+        "ultimo": 500.65
+    },
+    {
+        "codigo": 21048,
+        "nem": 10,
+        "ranking": 20,
+        "lenguaje": 30,
+        "matematica": 30,
+        "cienciasHistoria": 10,
+        "vacantes": 125,
+        "ultimo": 496.9
+    },
+    {
+        "codigo": 21071,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 25,
+        "ultimo": 496.45
+    },
+    {
+        "codigo": 21031,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 60,
+        "ultimo": 487.85
+    },
+    {
+        "codigo": 21032,
+        "nem": 20,
+        "ranking": 20,
+        "lenguaje": 15,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 100,
+        "ultimo": 476.95
+    },
+    {
+        "codigo": 21045,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 60,
+        "ultimo": 476.25
+    },
+    {
+        "codigo": 21074,
+        "nem": 20,
+        "ranking": 20,
+        "lenguaje": 15,
+        "matematica": 35,
+        "cienciasHistoria": 10,
+        "vacantes": 100,
+        "ultimo": 476.1
+    },
+    {
+        "codigo": 21083,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 15,
+        "matematica": 30,
+        "cienciasHistoria": 20,
+        "vacantes": 40,
+        "ultimo": 472
+    },
+    {
+        "codigo": 21039,
+        "nem": 15,
+        "ranking": 25,
+        "lenguaje": 20,
+        "matematica": 30,
+        "cienciasHistoria": 10,
+        "vacantes": 30,
+        "ultimo": 464.9
+    },
+    {
+        "codigo": 21087,
+        "nem": 15,
+        "ranking": 35,
+        "lenguaje": 20,
+        "matematica": 20,
+        "cienciasHistoria": 10,
+        "vacantes": 30,
+        "ultimo": 462.85
+    },
+    {
+        "codigo": 21015,
+        "nem": 10,
+        "ranking": 20,
+        "lenguaje": 30,
+        "matematica": 30,
+        "cienciasHistoria": 10,
+        "vacantes": 30,
+        "ultimo": 461.8
+    },
+    {
+        "codigo": 21081,
+        "nem": 10,
+        "ranking": 20,
+        "lenguaje": 30,
+        "matematica": 30,
+        "cienciasHistoria": 10,
+        "vacantes": 90,
+        "ultimo": 458.8
+    },
+    {
+        "codigo": 21002,
+        "nem": 20,
+        "ranking": 20,
+        "lenguaje": 40,
+        "matematica": 10,
+        "cienciasHistoria": 10,
+        "vacantes": 35,
+        "ultimo": 453.6
+    },
+    {
+        "codigo": 21012,
+        "nem": 20,
+        "ranking": 20,
+        "lenguaje": 30,
+        "matematica": 15,
+        "cienciasHistoria": 15,
+        "vacantes": 80,
+        "ultimo": 452.2
+    },
+    {
+        "codigo": 21080,
+        "nem": 10,
+        "ranking": 25,
+        "lenguaje": 15,
+        "matematica": 30,
+        "cienciasHistoria": 20,
+        "vacantes": 80,
+        "ultimo": 451.7
+    },
+    {
+        "codigo": 21082,
+        "nem": 10,
+        "ranking": 20,
+        "lenguaje": 30,
+        "matematica": 30,
+        "cienciasHistoria": 10,
+        "vacantes": 25,
+        "ultimo": 448.1
+    },
+    {
+        "codigo": 21024,
+        "nem": 10,
+        "ranking": 40,
+        "lenguaje": 30,
+        "matematica": 10,
+        "cienciasHistoria": 10,
+        "vacantes": 100,
+        "ultimo": 440.2
+    },
+    {
+        "codigo": 21023,
+        "nem": 10,
+        "ranking": 40,
+        "lenguaje": 30,
+        "matematica": 10,
+        "cienciasHistoria": 10,
+        "vacantes": 65,
+        "ultimo": 439.9
+    }
+]
