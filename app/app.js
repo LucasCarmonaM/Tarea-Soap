@@ -4,28 +4,19 @@ const json = require('./carreras.json');
 
 const Headers = ['RUT', 'NEM', 'RANKING', 'MATEMATICAS', 'LENGUAJE', 'HISTORIA', 'CIENCIAS'];
 
-// OPCIONES PARA PIPE CSV (PARAMETRO) de la funcion
+console.time("tiempo corriendo");
+
+// OPCIONES PARA PIPE CSV (PARAMETRO de la funcion)
 const obj = {
     separator: ';',
     headers: Headers
 };
 
-
-//objeto utilizada para tener las 28 carreras con un arreglo de objetos que son par de datos, el rut y su ponderacion
-const objMatriz = {
-    Codigo: '',
-    Vacantes: '',
-    Ultimo: 0,
-    Pond: '',
-    Persona: []
-};
-
-// esta matriz tiene el objeto anterior, 28 veces 0- 27
+// este arreglo corresponde a las carreras, 28 carreras (0- 27)
 let matrizCarrera = [];
 
 let carreras = [];
 carreras = json;
-
 
 
 const llenarMCarreras = () => {
@@ -50,6 +41,7 @@ llenarMCarreras();
 
 /* 
 EJEMPLO DE MATRIZ CARRERAS donde arrreglo "Persona" se llena con todos los postulantes a la carrera matrizCarrera[i]
+Este arreglo de personas tendra de largo las vacantes por carrera
     matrizCarrera[1]{
         Codigo: 21041
         Vacantes: 60
@@ -95,7 +87,7 @@ const promedios = (puntajes) => {
             }
             return 0;
         });
-        // Si el puntaje en historia es mayor al de ciencias, se utiliza este primero para las ponderar
+        // Si el puntaje en historia es mayor al de ciencias, se utiliza este primero para la ponderacion
         if (parseInt(puntajes.HISTORIA) > parseInt(puntajes.CIENCIAS)) {
 
             ponderaciones = matrizCarrera[i].Pond.split(',');
@@ -187,8 +179,15 @@ const promedios = (puntajes) => {
     }
 };
 
+
+/*
+funcion que recibe archivo codificado en 64 y lo transforma en csv
+*/
+
+
 // Funcion lee csv y por linea devuelve un objeto con puntajes de cada materia y el rut
 // Primer "on" llama funcion promedios si el promedio entre lenguaje y matematicas es sobre 450
+
 fs.createReadStream('puntajes3.csv')
     .pipe(csv(obj))
     .on('data', (puntajes) => {
@@ -199,8 +198,11 @@ fs.createReadStream('puntajes3.csv')
     .on('end', () => {
         console.log('Termina de recorrer');
 
-        console.log(matrizCarrera);
-        console.log(matrizCarrera[1].Persona);
-        console.log(matrizCarrera[1].Vacantes);
-        console.log(matrizCarrera[1].Persona.length);
+        console.table(matrizCarrera);
+        /*         console.log(matrizCarrera[1].Persona);
+                console.log(matrizCarrera[1].Vacantes);
+                console.log(matrizCarrera[1].Persona.length); */
+        console.timeEnd("tiempo corriendo");
     });
+
+/* funcion que devuelve el archivo codificado con formato hoja por carrera */
